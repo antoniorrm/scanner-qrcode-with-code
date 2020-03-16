@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Text, View, StyleSheet, Button } from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
+import { encrypt, decrypt } from "react-native-simple-encryption";
 
 export default function ScannerBarCode() {
   const [hasPermission, setHasPermission] = useState(null);
@@ -15,7 +16,11 @@ export default function ScannerBarCode() {
 
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
-    alert(`Bar code with type ${type} and data ${data} has been scanned!`);
+    const dataEncrypt = encrypt("key123", data);
+    alert(
+      `Bar code with type ${type} and data ${dataEncrypt} has been scanned!`
+    );
+    console.log(decrypt("key123", dataEncrypt));
   };
 
   if (hasPermission === null) {
