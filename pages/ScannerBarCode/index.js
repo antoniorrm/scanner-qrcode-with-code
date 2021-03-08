@@ -35,7 +35,7 @@ export default function ScannerBarCode() {
       style={{
         flex: 1,
         flexDirection: "column",
-        justifyContent: "flex-end"
+        justifyContent: "flex-end",
       }}
     >
       <BarCodeScanner
